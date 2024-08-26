@@ -1,10 +1,12 @@
+// Define a interface Pergunta que descreve a estrutura de uma pergunta no quiz
 interface Pergunta {
-    pergunta: string;
-    respostas: string[];
-    correta: number;
+    pergunta: string; // Texto da pergunta
+    respostas: string[]; // Lista de respostas possíveis
+    correta: number; // Índice da resposta correta na lista de respostas
 }
 
-const perguntasGeografia: Pergunta[] = [
+// Define as perguntas para cada categoria
+const perguntasGeografia: Pergunta[] = [ //perguntas de Geografia
     {
         pergunta: "Qual é a capital da França?",
         respostas: [
@@ -157,7 +159,7 @@ const perguntasGeografia: Pergunta[] = [
     },
 ];
 
-const perguntasHistoria: Pergunta[] = [
+const perguntasHistoria: Pergunta[] = [ //perguntas de História
     {
         pergunta: "Quem foi o primeiro presidente dos Estados Unidos?",
         respostas: [
@@ -310,7 +312,7 @@ const perguntasHistoria: Pergunta[] = [
     }
 ];
 
-const perguntasMatematica: Pergunta[] = [
+const perguntasMatematica: Pergunta[] = [ //perguntas de Matemática
     {
         pergunta: "Qual é o valor de π (Pi) arredondado a duas casas decimais?",
         respostas: [
@@ -463,19 +465,24 @@ const perguntasMatematica: Pergunta[] = [
     }
 ];
 
+// Inicializa a lista de perguntas com a categoria de Geografia
 let perguntasAtuais = perguntasGeografia;
 
+// Obtém os elementos HTML necessários
 const quiz = document.querySelector('#quiz') as HTMLDivElement;
 const template = document.querySelector('template') as HTMLTemplateElement;
 
+// Conjunto para armazenar as perguntas corretas
 const corretas = new Set<Pergunta>();
 const mostrarTotal = document.querySelector('#acertos span') as HTMLSpanElement;
 
+// Função para renderizar as perguntas no quiz
 function renderizarQuiz(perguntas: Pergunta[]) {
     quiz.innerHTML = ''; // Limpa o quiz atual
     corretas.clear(); // Reseta o número de acertos
     mostrarTotal.textContent = '0 de ' + perguntas.length;
 
+    // Itera sobre cada pergunta na lista de perguntas
     for (const item of perguntas) {
         const quizItem = template.content.cloneNode(true) as DocumentFragment;
         (quizItem.querySelector('h3') as HTMLHeadingElement).textContent = item.pergunta;
@@ -506,8 +513,10 @@ function renderizarQuiz(perguntas: Pergunta[]) {
     }
 }
 
+// Inicializa o quiz com a categoria de perguntas atuais
 renderizarQuiz(perguntasAtuais);
 
+// Configura os manipuladores de eventos para selecionar diferentes categorias
 document.getElementById('geografia')!.onclick = () => {
     perguntasAtuais = perguntasGeografia;
     document.querySelector('.categoria-selecionada')?.classList.remove('categoria-selecionada');
