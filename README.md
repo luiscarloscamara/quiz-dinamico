@@ -45,7 +45,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - CSS
 - TypeScript
 
-## ➡️ Melhorias
+## 💡 Melhorias
 
 - Adicionar mais temas
 - Adicionar seleção de dificuldade das questões
